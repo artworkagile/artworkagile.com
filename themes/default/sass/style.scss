@@ -31,6 +31,8 @@ body {
   margin: 0;
   min-height: 100%;
   overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-meta { text-align: right; }
@@ -48,7 +50,8 @@ li { margin: 0.4rem 0; }
 .w {
   max-width: 640px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 1rem 2rem 4rem 2rem;
+  flex: 1;
 }
 
 hr {
@@ -93,6 +96,41 @@ img {
   margin: 0 auto;
 }
 
+header {
+  background: #f5f5f5;
+  padding: 1rem 2rem;
+  margin: 0 0 2rem 0;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+    font-size: 1.5rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+.logo-link {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1rem;
+  line-height: 0;
+}
+
+.site-logo {
+  max-height: 50px;
+  width: auto;
+  display: block;
+
+  &.invertable { filter: invert(0); }
+}
+
 .footnote-definition {
   padding: 0 1rem;
   &:target {
@@ -105,3 +143,17 @@ img {
 }
 
 nav, .taxonomies { text-align: center; }
+
+footer {
+  background: #f5f5f5;
+  padding: 1rem 2rem;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+
+  p {
+    margin: 0;
+  }
+}

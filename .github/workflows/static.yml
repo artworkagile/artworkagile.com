@@ -19,3 +19,5 @@ jobs:
           # Or if publishing to the same repo, use the automatic token
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # TOKEN: ${{ secrets.PUBLIC_TOKEN }}
+          # Override base_url for production deployment
+          BUILD_FLAGS: --base-url https://artworkagile.github.io/artworkagile.com/

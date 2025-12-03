@@ -68,21 +68,53 @@
         {% if description %}<meta property="twitter:description" content="{{ description }}">{% endif %}
         {% if image %}<meta property="twitter:image" content="{{ image }}">{% endif %}
         {% endif %}
-        
+
         <link rel="canonical" href="{{ url | safe }}">
-        {% if image %}<link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path=config.extra.logo, trailing_slash=false) }}">{% endif %}
+        <link rel="icon" type="image/x-icon" href="{{ get_url(path='favicon.ico', trailing_slash=false) }}">
         <script type="application/ld+json">
             {
+                "@context":"https://schema.org",
+                {% if page.date %}
+                "@type":"BlogPosting",
+                "headline":"{{ title | safe }}",
                 {% if description %}"description":"{{ description | safe }}",{% endif %}
                 "url":"{{ url | safe }}",
-                "@type":"WebSite",
-                {% if title %}"headline":"{{ title | safe }}",{% endif %}
-                {% if title %}"name":"{{ title | safe }}",{% endif %}
-                {% if author %}"author":{
+                {% if image %}"image":"{{ image }}",{% endif %}
+                "datePublished":"{{ page.date }}",
+                {% if page.updated %}"dateModified":"{{ page.updated }}",{% else %}"dateModified":"{{ page.date }}",{% endif %}
+                "author":{
                     "@type":"Person",
-                    "name":"{{ author | safe }}"
-                },{% endif %}
-                "@context":"https://schema.org"
+                    "name":"{% if author %}{{ author | safe }}{% else %}{{ config.title }}{% endif %}"
+                },
+                "publisher":{
+                    "@type":"Organization",
+                    "name":"{{ config.title }}",
+                    {% if config.extra.logo %}"logo":{
+                        "@type":"ImageObject",
+                        "url":"{{ get_url(path=config.extra.logo, trailing_slash=false) }}"
+                    }{% endif %}
+                },
+                "mainEntityOfPage":{
+                    "@type":"WebPage",
+                    "@id":"{{ url | safe }}"
+                }
+                {% if page.taxonomies.tags %},
+                "keywords":"{{ page.taxonomies.tags | join(sep=", ") }}"
+                {% endif %}
+                {% else %}
+                "@type":"WebSite",
+                {% if title %}"name":"{{ title | safe }}",{% endif %}
+                {% if description %}"description":"{{ description | safe }}",{% endif %}
+                "url":"{{ url | safe }}",
+                "publisher":{
+                    "@type":"Organization",
+                    "name":"{{ config.title }}"
+                    {% if config.extra.logo %},"logo":{
+                        "@type":"ImageObject",
+                        "url":"{{ get_url(path=config.extra.logo, trailing_slash=false) }}"
+                    }{% endif %}
+                }
+                {% endif %}
             }
         </script>
         {% endblock metatags %}
@@ -96,31 +128,38 @@
         {% endblock css %}
     </head>
     <body theme="auto">
+        <header>
+            {% if config.extra.header_nav %}
+            <nav>
+                {% for nav_item in config.extra.header_nav %}
+                <a href="{{ nav_item.url | safe }}" {% if nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
+                {% endfor %}
+            </nav>
+            {% endif %}
+            {% block header %}
+            {% if config.extra.logo %}
+            <a href="{{ config.base_url | safe }}" class="logo-link">
+                <img src="{{ get_url(path=config.extra.logo, trailing_slash=false) }}" alt="{{ config.title }}" class="site-logo invertable">
+            </a>
+            {% endif %}
+            {% endblock header %}
+        </header>
         <div class="w">
-            <header>
-                {% if config.extra.header_nav %}
-                <nav>
-                    {% for nav_item in config.extra.header_nav %}
-                    <a href="{{ nav_item.url | safe }}" {% if nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
-                    {% endfor %}
-                </nav>
-                {% endif %}
-                {% block header %}{% if title %}<h1>{{ config.title }}</h1>{% endif %}{% endblock header %}
-            </header>
             <main class="page-content" aria-label="Content">
                 {% block content %}{% endblock content %}
             </main>
-            <footer>
-                {% block footer %}{% endblock footer %}
-                {% if config.extra.footer_nav %}
-                <nav>
-                    {% for nav_item in config.extra.footer_nav %}
-                    <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
-                    {% endfor %}
-                </nav>
-                {% endif %}
-            </footer>
         </div>
+        <footer>
+            {% block footer %}
+            <p>&copy; {{ now() | date(format="%Y") }} {{ config.title }}. <a href="https://www.instagram.com/artwork.agile" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+            {% endblock footer %}
+            {% if config.extra.footer_nav %}
+            <nav>
+                {% for nav_item in config.extra.footer_nav %}
+                <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
+                {% endfor %}
+            </nav>
+            {% endif %}
+        </footer>
     </body>
 </html>
-        

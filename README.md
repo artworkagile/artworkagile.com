@@ -2,13 +2,25 @@
 
 Website for artworkagile.com
 
-## Development with Docker Compose
+## Local Development
 
-To build and serve the site locally with [Zola](https://www.getzola.org/), run:
+This site is built with [Zola](https://www.getzola.org/), a fast static site generator.
+
+### Prerequisites
+
+Install Zola by following the [installation instructions](https://www.getzola.org/documentation/getting-started/installation/).
+
+Quick install options:
+- macOS: `brew install zola`
+- Linux: `snap install zola --edge`
+- Windows: `choco install zola` or `scoop install zola`
+
+### Running the Development Server
+
+To start a live-reloading development server:
 
 ```bash
-docker compose up
+zola serve
 ```
 
-This uses the [`ghcr.io/getzola/zola:v0.19.1`](https://github.com/getzola/zola/releases/tag/v0.19.1) image to start a live-reloading server available at [http://localhost:1111](http://localhost:1111).
-
+The site will be available at [http://localhost:1111](http://localhost:1111).
