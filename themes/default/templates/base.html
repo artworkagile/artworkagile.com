@@ -151,7 +151,23 @@
         </div>
         <footer>
             {% block footer %}
-            <p>&copy; {{ now() | date(format="%Y") }} {{ config.title }}. <a href="https://www.instagram.com/artwork.agile" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+            <p>
+                <span class="footer-copyright">&copy; {{ now() | date(format="%Y") }} {{ config.title }}.</span>
+                <span class="footer-social">
+                    <a href="https://www.instagram.com/artwork.agile" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <img src="{{ get_url(path='images/instagram-svgrepo-com.svg', trailing_slash=false) }}" alt="Instagram" class="social-icon" width="16" height="16">
+                        Instagram
+                    </a>
+                    <a href="https://www.pinterest.com/artworkagile" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <img src="{{ get_url(path='images/pinterest-round-logo-svgrepo-com.svg', trailing_slash=false) }}" alt="Pinterest" class="social-icon" width="16" height="16">
+                        Pinterest
+                    </a>
+                    <a href="https://artworkagile.substack.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <img src="{{ get_url(path='images/substack-icon.svg', trailing_slash=false) }}" alt="Substack" class="social-icon" width="16" height="16">
+                        Substack
+                    </a>
+                </span>
+            </p>
             {% endblock footer %}
             {% if config.extra.footer_nav %}
             <nav>
