@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://artwork-agile.github.io/artworkagile.com/sitemap.xml
+Sitemap: https://localhost:1111/sitemap.xml

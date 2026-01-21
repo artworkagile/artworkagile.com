@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+<div class="downloads-page">
+{{ section.content | safe }}
+
+<style>
+.downloads-page hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.downloads-page hr:before,
+.downloads-page hr:after {
+  content: none;
+}
+
+.download-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.download-thumbnail {
+  flex-shrink: 0;
+  width: 200px;
+}
+
+.download-thumbnail a {
+  display: block;
+  padding: 12px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.download-thumbnail a:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.download-thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.download-info {
+  flex: 1;
+}
+
+.download-info h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.download-info p {
+  margin-bottom: 0.75rem;
+}
+
+.download-link {
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .download-item {
+    flex-direction: column;
+  }
+
+  .download-thumbnail {
+    width: 100%;
+  }
+}
+</style>
+
+{% for page in section.pages %}
+<div class="download-item">
+  <div class="download-thumbnail">
+    <a href="/downloads/{{ page.slug }}.pdf" download>
+      <img src="/downloads/{{ page.slug }}.jpg" alt="{{ page.title }}" />
+    </a>
+  </div>
+  <div class="download-info">
+    <h2>{{ page.title }}</h2>
+    <p>{{ page.description }}</p>
+    <p class="download-link"><a href="/downloads/{{ page.slug }}.pdf" download>Download {{ page.title }}</a></p>
+  </div>
+</div>
+<hr />
+{% endfor %}
+</div>
+{% endblock content %}

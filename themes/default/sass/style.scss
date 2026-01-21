@@ -114,9 +114,13 @@ header {
   margin: 0 0 2rem 0;
   border-bottom: 1px solid #ddd;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 
   @media (max-width: 480px) {
     padding: 1rem;
+    gap: 1rem;
   }
 
   h1 {
@@ -132,11 +136,49 @@ header {
   }
 }
 
+.header-nav {
+  display: flex;
+  gap: 0.5rem;
+  text-align: left;
+
+  a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background-color: #e0e0e0;
+      color: #000;
+    }
+
+    &:active {
+      background-color: #d0d0d0;
+    }
+
+    &.active {
+      background-color: transparent;
+      color: #000;
+      font-weight: 600;
+      border-bottom: 2px solid #000;
+      border-radius: 0;
+      padding-bottom: calc(0.5rem - 2px);
+
+      &:hover {
+        background-color: transparent;
+        color: #000;
+      }
+    }
+  }
+}
+
 .logo-link {
   display: inline-block;
-  vertical-align: middle;
-  margin-right: 1rem;
   line-height: 0;
+  flex-shrink: 0;
 }
 
 .site-logo {

@@ -1,0 +1,29 @@
+[[items]]
+title = "Portrait Reference Booklet"
+description = "A collection of cinematic faces for sketching practice. The portraits in this booklet come from old movies now in the public domain. I downloaded those films, went through them frame by frame, and picked moments where faces were clear and expressive. Each image was gently enhanced to restore a bit of contrast and life lost over time. From there, I chose the ones I liked most — simple, well-lit scenes that are easy to draw from. This booklet is meant for practice, not perfection. Just faces worth sketching."
+slug = "portrait-reference-booklet"
+order = 1
+
+[[items]]
+title = "Color Diary"
+description = "I paint with acrylics, which dry fast. That's why I cannot keep the paint on my palette forever. Whenever I mix a color I like, I record it as a formula in my color diary, and that's how I can re-create it again with accuracy."
+slug = "color-diary"
+order = 2
+
+[[items]]
+title = "Mixing Grid"
+description = "It is a tool for convenient mixing three or four colors into a grid with proportional gradations. I use it to test my paints. I can mix two colors with white or black, three or four colors with each other, or a color with two different tinting colors."
+slug = "mixing-grid"
+order = 3
+
+[[items]]
+title = "Paint Wheel"
+description = "It's a printable implementation of Bruce MacEvoy's paint wheel. I often paint with a limited palette; with this tool, I can visualize the color gamut of my paint selection."
+slug = "paint-wheel"
+order = 4
+
+[[items]]
+title = "Paint Lightfastness Tester"
+description = "Here, you can download Bruce MacEvoy's paint lightfastness testing matrix. I do the test occasionally to remove weak pigments from my palette."
+slug = "paint-lightfastness-tester"
+order = 5

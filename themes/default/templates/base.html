@@ -129,20 +129,20 @@
     </head>
     <body theme="auto">
         <header>
-            {% if config.extra.header_nav %}
-            <nav>
-                {% for nav_item in config.extra.header_nav %}
-                <a href="{{ nav_item.url | safe }}" {% if nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
-                {% endfor %}
-            </nav>
-            {% endif %}
-            {% block header %}
             {% if config.extra.logo %}
             <a href="{{ config.base_url | safe }}" class="logo-link">
                 <img src="{{ get_url(path=config.extra.logo, trailing_slash=false) }}" alt="{{ config.title }}" class="site-logo invertable">
             </a>
             {% endif %}
-            {% endblock header %}
+            {% if config.extra.header_nav %}
+            <nav class="header-nav">
+                {% for nav_item in config.extra.header_nav %}
+                {% set current = current_path | default(value="") %}
+                {% set is_active = current == nav_item.url or (nav_item.url != "/" and current is starting_with(nav_item.url)) %}
+                <a href="{{ nav_item.url | safe }}"{% if is_active %} class="active"{% endif %}{% if nav_item.new_tab %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
+                {% endfor %}
+            </nav>
+            {% endif %}
         </header>
         <div class="w">
             <main class="page-content" aria-label="Content">
