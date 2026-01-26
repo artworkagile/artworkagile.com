@@ -11,9 +11,6 @@ taxonomies = [
     { name = "contexts" },
 ]
 
-[markdown]
-highlighting = true
-
 [extra]
 author = "Ahmed Alaa"
 logo = "images/logo.png"
